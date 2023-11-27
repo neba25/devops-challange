@@ -1,0 +1,31 @@
+
+name: codepipeline
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout codepipeline
+        uses: actions/checkout@v2
+
+      - name: Install dependencies ### work
+        run: |
+          cd devops-challange/devops-ci-challenge/codebase/rdicidr-0.1.0
+          npm install 
+
+      - name: Lint 
+        run: npm run prettier ### all this to gtest 
+
+      - name: Test 
+        run: CI=true npm run test ## all test changed 
+
+      - name: Build 
+        run: npm run build # this is a test run
+
+       
